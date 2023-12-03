@@ -11,9 +11,11 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.net.URI;
 import java.util.List;
@@ -46,7 +48,7 @@ public class PurchaseRequestController {
         List<Product> productsList = productRepository.findAllById(productAndQuantity.keySet());
 
         if (productsList.size() != productAndQuantity.size()) {
-            return ResponseEntity.badRequest().build();
+           throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "One or more products not found");
         }
 
         Map<Product, Integer> products = productsList.stream().map(product -> Map.entry(product, productAndQuantity.get(product.getId()))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
@@ -65,7 +67,7 @@ public class PurchaseRequestController {
         PurchaseRequest purchaseRequest = purchaseRequestRepository.findById(id).orElse(null);
 
         if (purchaseRequest == null) {
-            return ResponseEntity.notFound().build();
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Purchase request id [%s] not found".formatted(id));
         }
 
         purchaseRequest.setPending(false);

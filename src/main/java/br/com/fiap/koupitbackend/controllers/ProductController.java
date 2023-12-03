@@ -3,7 +3,6 @@ package br.com.fiap.koupitbackend.controllers;
 import br.com.fiap.koupitbackend.models.Product;
 import br.com.fiap.koupitbackend.models.ProductBrand;
 import br.com.fiap.koupitbackend.payload.request.ProductRequest;
-import br.com.fiap.koupitbackend.payload.response.ErrorResponse;
 import br.com.fiap.koupitbackend.payload.response.ProductResponse;
 import br.com.fiap.koupitbackend.repositories.ProductBrandRepository;
 import br.com.fiap.koupitbackend.repositories.ProductRepository;
@@ -13,8 +12,10 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -63,14 +64,14 @@ public class ProductController {
         Optional<Product> product = productRepository.findById(id);
 
         if (Boolean.FALSE.equals(product.isPresent())) {
-            return ResponseEntity.notFound().build();
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product id [%s] not found".formatted(id));
         }
 
         return ResponseEntity.ok(ProductResponse.fromProduct(product.get()));
     }
 
     @PostMapping
-    public ResponseEntity<?> createProduct(@RequestBody @Valid final ProductRequest productRequest) {
+    public ResponseEntity<ProductResponse> createProduct(@RequestBody @Valid final ProductRequest productRequest) {
         try {
             Product product = fromProductRequest(productRequest);
 
@@ -78,14 +79,12 @@ public class ProductController {
 
             return ResponseEntity.ok(ProductResponse.fromProduct(product));
         } catch (EntityNotFoundException e) {
-            ErrorResponse errorResponse = ErrorResponse.fromException(e);
-
-            return ResponseEntity.badRequest().body(errorResponse);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateProduct(@PathVariable final Long id, @RequestBody @Valid final ProductRequest productRequest) {
+    public ResponseEntity<ProductResponse> updateProduct(@PathVariable final Long id, @RequestBody @Valid final ProductRequest productRequest) {
         try {
             Optional<Product> productFind = productRepository.findById(id);
 
@@ -105,18 +104,16 @@ public class ProductController {
 
             return ResponseEntity.ok(ProductResponse.fromProduct(product));
         } catch (EntityNotFoundException e) {
-            ErrorResponse errorResponse = ErrorResponse.fromException(e);
-
-            return ResponseEntity.badRequest().body(errorResponse);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteProduct(@PathVariable final Long id) {
+    public ResponseEntity<Void> deleteProduct(@PathVariable final Long id) {
         Optional<Product> product = productRepository.findById(id);
 
         if (Boolean.FALSE.equals(product.isPresent())) {
-            return ResponseEntity.notFound().build();
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product id [%s] not found".formatted(id));
         }
 
         productRepository.delete(product.get());
