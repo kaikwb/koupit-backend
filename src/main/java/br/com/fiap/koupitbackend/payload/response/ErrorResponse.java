@@ -2,13 +2,15 @@ package br.com.fiap.koupitbackend.payload.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
+@Data
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class ErrorResponse {
-    private final String error;
+    private String error;
 
     public static ErrorResponse fromException(final Exception exception) {
         return ErrorResponse.builder()

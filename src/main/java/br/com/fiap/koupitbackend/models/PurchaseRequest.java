@@ -5,7 +5,7 @@ import lombok.*;
 
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
-import java.util.HashMap;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -45,5 +45,13 @@ public class PurchaseRequest {
         foreignKey = @ForeignKey(name = "fk_purchase_requests_products_products")
     )
     @Column(name = "quantity", nullable = false)
-    private HashMap<Product, Integer> products;
+    private Map<Product, Integer> products;
+
+    public static PurchaseRequest createFromProductMap(Map<Product, Integer> products) {
+        return PurchaseRequest.builder()
+            .requestDate(ZonedDateTime.now(ZoneOffset.UTC))
+            .pending(true)
+            .products(products)
+            .build();
+    }
 }

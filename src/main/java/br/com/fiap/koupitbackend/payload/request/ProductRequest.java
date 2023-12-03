@@ -4,19 +4,21 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
+@Data
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class ProductRequest {
     @NotBlank
-    private final String name;
+    private String name;
 
-    private final String    description;
+    private String description;
 
-    private final String brand;
+    private String brand;
 
     @NotEmpty
-    private final String[] types;
+    private String[] types;
 }
