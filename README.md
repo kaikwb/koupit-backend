@@ -446,7 +446,7 @@ Deleta o produto da requisição de compra com o id informado
 
 ## Arquiteura da solução
 
-![Arquiteura da solução](/diagrams/Arch.svg)
+![Arquiteura da solução](/diagrams/arch.png)
 
 ## Modelo DER
 
@@ -454,4 +454,4 @@ Deleta o produto da requisição de compra com o id informado
 
 ## Diagrama de classes
 
-![Diagrama de classes](/diagrams/Project Diagram.svg)
+![Diagrama de classes](/diagrams/project_diagram.svg)
