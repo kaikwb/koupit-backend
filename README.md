@@ -450,7 +450,7 @@ Deleta o produto da requisição de compra com o id informado
 
 ## Modelo DER
 
-![Modelo DER](/diagrams/DER.svg)
+![Modelo DER](/diagrams/der.svg)
 
 ## Diagrama de classes
 
