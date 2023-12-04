@@ -436,3 +436,15 @@ Deleta o produto da requisição de compra com o id informado
   ]
 }
 ```
+
+## Arquiteura da solução
+
+![Arquiteura da solução](/diagrams/Arch.svg)
+
+## Modelo DER
+
+![Modelo DER](/diagrams/DER.svg)
+
+## Diagrama de classes
+
+![Diagrama de classes](/diagrams/Project Diagram.svg)

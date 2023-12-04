@@ -1,5 +1,7 @@
 .idea/
 .mvn/
+astah/
+diagrams/
 docker/
 target/
 
