@@ -54,6 +54,13 @@ docker compose up -d
 
 ## Endpoints
 
+### Coleção do Postman
+
+Para facilitar o uso do sistema, foi criada uma coleção do Postman com todos os endpoints, ela está disponível na pasta
+[postman](/postman) do projeto.
+
+[Coleção do Postman](/postman/postman_collection.json)
+
 ### Authenticação
 
 Todos os endpoints abaixo necessitam de autenticação, para isso, é necessário obter um token de acesso, para isso,

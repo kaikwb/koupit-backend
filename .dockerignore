@@ -3,6 +3,7 @@
 astah/
 diagrams/
 docker/
+postman/
 target/
 
 .dockerignore

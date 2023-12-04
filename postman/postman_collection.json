@@ -1,0 +1,426 @@
+{
+	"info": {
+		"_postman_id": "880794b3-5895-4c2d-91d6-660f2befab2f",
+		"name": "API Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12305920"
+	},
+	"item": [
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Get Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http_protocol}}://{{api_host}}/api/products",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products Brands",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http_protocol}}://{{api_host}}/api/products/brands",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"brands"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test\",\r\n    \"description\": null,\r\n    \"brand\": null,\r\n    \"types\": [\r\n        \"Electronics\",\r\n        \"Toys\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http_protocol}}://{{api_host}}/api/products",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test\",\r\n    \"description\": null,\r\n    \"brand\": null,\r\n    \"types\": [\"Electronics\", \"Toys\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http_protocol}}://{{api_host}}/api/products/1",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http_protocol}}://{{api_host}}/api/products/1",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{http_protocol}}://{{api_host}}/api/products/8",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Purchase Request",
+			"item": [
+				{
+					"name": "Products",
+					"item": [
+						{
+							"name": "Add Product to Purchase Request",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 1,\r\n    \"quantity\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http_protocol}}://{{api_host}}/api/purchase-request/1/products",
+									"protocol": "{{http_protocol}}",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"api",
+										"purchase-request",
+										"1",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product Quantity",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"quantity\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http_protocol}}://{{api_host}}/api/purchase-request/1/products/1",
+									"protocol": "{{http_protocol}}",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"api",
+										"purchase-request",
+										"1",
+										"products",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product Quantity Copy",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{http_protocol}}://{{api_host}}/api/purchase-request/1/products/2",
+									"protocol": "{{http_protocol}}",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"api",
+										"purchase-request",
+										"1",
+										"products",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get Purchase Requests",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http_protocol}}://{{api_host}}/api/purchase-requests",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"api",
+								"purchase-requests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Purchase Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http_protocol}}://{{api_host}}/api/purchase-requests/1",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"api",
+								"purchase-requests",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Approve Purchase Request",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{http_protocol}}://{{api_host}}/api/purchase-requests/1/approve",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"api",
+								"purchase-requests",
+								"1",
+								"approve"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Purchse Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"products\": [\r\n        {\r\n            \"id\": 1,\r\n            \"quantity\": 1\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http_protocol}}://{{api_host}}/api/purchase-requests",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"api",
+								"purchase-requests"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authtentication",
+			"item": [
+				{
+					"name": "Auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"access_token\", jsonData.access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"fiap\",\r\n    \"password\": \"fiap\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http_protocol}}://{{api_host}}/auth/login",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api_host",
+			"value": "localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "http_protocol",
+			"value": "http",
+			"type": "string"
+		},
+		{
+			"key": "access_token",
+			"value": ""
+		}
+	]
+}
