@@ -1,0 +1,21 @@
+{
+  "realm": "KoupitKeycloak",
+  "auth-server-url": "http://ubuntu.kaikwb.lan:38080",
+  "resource": "koupit-app",
+  "credentials": {
+    "secret": "b63ITCn2gR6aMstW5bYMUrpuUe1eFY2A"
+  },
+  "enforcement-mode": "PERMISSIVE",
+  "paths": [
+    {
+      "name": "Auth",
+      "path": "/auth/*",
+      "enforcement-mode": "DISABLED"
+    },
+    {
+      "name": "Error",
+      "path": "/error/*",
+      "enforcement-mode": "DISABLED"
+    }
+  ]
+}

@@ -9,5 +9,4 @@ public class KoupitBackendApplication {
     public static void main(String[] args) {
         SpringApplication.run(KoupitBackendApplication.class, args);
     }
-
 }
