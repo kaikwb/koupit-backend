@@ -1,0 +1,11 @@
+.idea/
+.mvn/
+docker/
+target/
+
+.dockerignore
+.gitignore
+compose.yaml
+Dockerfile
+koupit-backend.iml
+README.md

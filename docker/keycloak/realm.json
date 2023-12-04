@@ -1,0 +1,96 @@
+{
+  "realm": "KoupitKeycloak",
+  "enabled": true,
+  "requiredCredentials": [
+    "password"
+  ],
+  "users": [
+    {
+      "username": "fiap",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "fiap"
+        }
+      ],
+      "realmRoles": [
+        "user"
+      ]
+    },
+    {
+      "username": "service-account-koupit-app",
+      "enabled": true,
+      "serviceAccountClientId": "koupit-app",
+      "clientRoles": {
+        "koupit-app" : ["uma_protection"]
+      }
+    }
+  ],
+  "roles": {
+    "realm": [
+      {
+        "name": "user",
+        "description": "User privileges"
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "koupit-app",
+      "enabled": true,
+      "baseUrl": "",
+      "adminUrl": "",
+      "bearerOnly": false,
+      "redirectUris": [
+        "*"
+      ],
+      "webOrigins": [
+        "*"
+      ],
+      "secret": "b63ITCn2gR6aMstW5bYMUrpuUe1eFY2A",
+      "authorizationServicesEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "authorizationSettings": {
+        "allowRemoteResourceManagement": true,
+        "policyEnforcementMode": "ENFORCING",
+        "resources": [
+          {
+            "name": "Default Resource",
+            "uri": "/api/*",
+            "type": "urn:koupit-app:resources:default"
+          }
+        ],
+        "policies": [
+          {
+            "name": "Any with role user",
+            "description": "Defines that any user can do something",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"user\",\"required\":true}]"
+            }
+          },
+          {
+            "name": "Any with role user permission",
+            "description": "A policy that defines access to any protected resource",
+            "type": "resource",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Default Resource\"]",
+              "applyPolicies": "[\"Any with role user\"]"
+            }
+          }
+        ],
+        "scopes": [
+          {
+            "name": "Any with role user",
+            "iconUri": ""
+          }
+        ]
+      }
+    }
+  ]
+}

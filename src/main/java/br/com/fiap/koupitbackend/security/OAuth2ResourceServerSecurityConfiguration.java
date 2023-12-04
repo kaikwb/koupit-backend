@@ -23,6 +23,9 @@ public class OAuth2ResourceServerSecurityConfiguration {
     @Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri}")
     String jwkSetUri;
 
+    @Value("${app.keycloak.host}")
+    String keycloakHost;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable();
@@ -41,6 +44,7 @@ public class OAuth2ResourceServerSecurityConfiguration {
 
         try {
             config = JsonSerialization.readValue(getClass().getResourceAsStream("/policy-enforcer.json"), PolicyEnforcerConfig.class);
+            config.setAuthServerUrl("http://%s".formatted(keycloakHost));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
