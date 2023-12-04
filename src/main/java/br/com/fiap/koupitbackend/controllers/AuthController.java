@@ -3,7 +3,6 @@ package br.com.fiap.koupitbackend.controllers;
 import br.com.fiap.koupitbackend.payload.request.LoginRequest;
 import br.com.fiap.koupitbackend.payload.response.LoginResponse;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.JsonSerializable;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -11,13 +10,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 @RestController
@@ -41,12 +45,6 @@ public class AuthController {
     HttpURLConnection makeConnection(String path) throws IOException {
         return (HttpURLConnection) makeUrl(path).openConnection();
     }
-
-    @GetMapping("/login")
-    public String login() {
-        return "Login";
-    }
-
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> doLogin(@RequestBody @Valid LoginRequest loginRequest) {

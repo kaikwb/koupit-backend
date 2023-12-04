@@ -40,6 +40,17 @@ public class PurchaseRequestController {
         return ResponseEntity.ok(purchaseRequestResponses);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<PurchaseRequestResponse> getPurchaseRequest(@PathVariable final Long id) {
+        PurchaseRequest purchaseRequest = purchaseRequestRepository.findById(id).orElse(null);
+
+        if (purchaseRequest == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Purchase request id [%s] not found".formatted(id));
+        }
+
+        return ResponseEntity.ok(PurchaseRequestResponse.fromPurchaseRequest(purchaseRequest));
+    }
+
     @Transactional
     @PostMapping
     public ResponseEntity<PurchaseRequestResponse> createPurchaseRequest(@RequestBody @Valid final PurchaseRequestCreate purchaseRequestCreate) {
@@ -48,7 +59,7 @@ public class PurchaseRequestController {
         List<Product> productsList = productRepository.findAllById(productAndQuantity.keySet());
 
         if (productsList.size() != productAndQuantity.size()) {
-           throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "One or more products not found");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "One or more products not found");
         }
 
         Map<Product, Integer> products = productsList.stream().map(product -> Map.entry(product, productAndQuantity.get(product.getId()))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
